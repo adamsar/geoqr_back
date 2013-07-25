@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+# REST routes for accounts
+GET     /accounts                   controllers.Accounts.index
+POST	/accounts					controllers.Accounts.create
+GET 	/accounts/login				controllers.Accounts.login
+
+# CheckIns associated with accounts
+GET		/accounts/:id/checkins		controllers.CheckIns.index(id: String)
+POST	/accounts/:id/checkins		controllers.CheckIns.create(id: String)
+POST	/accounts/:id/checkins/:locationId/redeem	controllers.CheckIns.validate(id: String, locationId:String)
+
+# REST routes for locations
+GET		/locations					controllers.Locations.index
+POST	/locations					controllers.Locations.create
+GET		/locations/:id				controllers.Locations.show(id: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
